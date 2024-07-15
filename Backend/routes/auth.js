@@ -28,7 +28,7 @@ router.post("/register", async (req, res) => {
             userId: savedUser._id,
             token: crypto.randomBytes(32).toString("hex"),
         }).save();
-        const url = `${process.env.BASE_URL}users/${savedUser.id}/verify/${token.token}`;
+        const url = `${process.env.BASE_URL}/users/${savedUser.id}/verify/${token.token}`;
         await sendEmail(savedUser.email, "Verify Email For CampusConnect", url);
 
         res.status(200).send({ Message: "An Email send to your account please verify" })
